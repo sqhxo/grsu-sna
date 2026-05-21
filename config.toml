@@ -1,0 +1,35 @@
+# Project configuration. Edit and run `python main.py`.
+
+log_level = "normal"        # quiet | normal | verbose | debug
+results_dir = "results"
+
+[datasets]
+# Which datasets to use. Names from src/datasets.py:DATASETS.
+include = ["karate", "dolphins", "football", "email-Eu-core", "facebook-ego-1684", "dblp-top500"]
+
+[steps]
+# Toggle individual analysis steps.
+structural = true
+benchmark = true
+gnn = true
+leaders = true
+isolated = true
+visualize = true
+
+[benchmark]
+n_repeats = 3              # set to 1 when running large datasets
+algorithms = ["louvain", "leiden", "label_propagation", "girvan_newman", "fast_greedy", "infomap", "walktrap"]
+
+[gnn]
+models = ["gcn", "graphsage"]
+epochs = 500
+hidden_dim = 64
+patience = 50
+checkpoint_dir = "models"   # trained models cached here, reused on subsequent runs
+force_retrain = false       # set true to ignore cached checkpoints
+
+[leaders]
+top_n = 5
+
+[visualize]
+max_nodes = 5000
